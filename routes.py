@@ -333,11 +333,24 @@ print(f'API_KEY do Google: {app.config["GOOGLE_API_KEY"]}')
 
 @app.route('/msgOperadora', methods=['GET', 'POST'])
 @login_required
-def msgOperadora():
-    if request.method== 'POST':
-        mensagem = request.form.get("mensagem")
-        dataCadastro = request.form.get("dataCadastro")
-    return render_template('msgOperadora.html')
+#def msgOperadora():
+    #if request.method== 'POST':
+       # mensagem = request.form.get("mensagem")
+       # dataCadastro = request.form.get("dataCadastro")
+   # return render_template('msgOperadora.html')
+from PyQt6 import uic, QtWidgets
+
+def chama_tela():
+    cad.show()
+
+app = QtWidgets.QApplication([])
+cadModulo = uic.loadUi("cadModulo.ui")
+cad = uic.loadUi("cad.ui")
+cadModulo.pushButton.clicked.connect(chama_tela)
+
+cadModulo.show()
+app.exec()
+
 
 
 print(f'API_KEY do Google: {app.config["GOOGLE_API_KEY"]}')
