@@ -214,7 +214,7 @@ def excluir_post(post_id):
 """
 Páginas referentes o Sistema de Envio de Mensagens
 """
-@app.route('/Modules', methods=['GET', 'POST'])
+@app.route('/Modulos', methods=['GET', 'POST'])
 @login_required
 def cad_Modules():
     form_cadastroModulos = FormCadastroModulos()
@@ -254,7 +254,7 @@ def cad_Modules():
             # Depois que cadastrar o novo Registro, listar na tabela abaixo do cadastro
             return redirect( url_for('cad_Modules')) # Ficar na página Atual
 
-    return render_template('cadModules.html', form_cadastroModulos=form_cadastroModulos)
+    return render_template('cadModulos.html', form_cadastroModulos=form_cadastroModulos)
 
 
 
@@ -333,23 +333,11 @@ print(f'API_KEY do Google: {app.config["GOOGLE_API_KEY"]}')
 
 @app.route('/msgOperadora', methods=['GET', 'POST'])
 @login_required
-#def msgOperadora():
-    #if request.method== 'POST':
-       # mensagem = request.form.get("mensagem")
-       # dataCadastro = request.form.get("dataCadastro")
-   # return render_template('msgOperadora.html')
-from PyQt6 import uic, QtWidgets
-
-def chama_tela():
-    cad.show()
-
-app = QtWidgets.QApplication([])
-cadModulo = uic.loadUi("cadModulo.ui")
-cad = uic.loadUi("cad.ui")
-cadModulo.pushButton.clicked.connect(chama_tela)
-
-cadModulo.show()
-app.exec()
+def msgOperadora():
+    if request.method== 'POST':
+       mensagem = request.form.get("mensagem")
+       dataCadastro = request.form.get("dataCadastro")
+    return render_template('msgOperadora.html')
 
 
 
