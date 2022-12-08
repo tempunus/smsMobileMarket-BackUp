@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+    <head>
+        <!-- Metadados -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- CSS -->
+        <link rel="stylesheet" type="text/css" href="css/styles.css" media="screen">
+        
+        <!-- Título da página (aparece na aba) -->
+        <title>Cadastro Módulo</title>
+    </head>
+    <body> 
+        <div class="container0">
+            <div class="container">
+                <!-- Cabeçalho com título e subtítulo (ambos com css de id "titulo") -->
+                <div>
+                    <h1 id="titulo">Cadastro de Módulo</h1>
+                    <br>
+                </div>
+            </div>
+                <!-- Início do formulário -->
+            <form>
+                <div class="container4">
+                    <fieldset class="grupo2">
+                        <!-- Campo do nome com a descrição do Módulo e css de classe "campo" -->
+                        <fieldset class="cad5">
+                            <label for="descMod"><strong>Descrição do Módulo <br>
+                            <input type="text" name="descMod" id="descMod" required></strong></label>
+                            
+                            <label for="ipMod"><strong>IP do Módulo <br>
+                            <input type="text" name="ipMod" id="ipMod" required></strong></label>
+                            <br>
+                            <br>
+                            <label for="portMod"><strong>Porta <br>
+                            <input type="text" name="portMod" id="portMod" required></strong></label>
+                        </fieldset>
+                        <div class="card4">
+                            <label for="Oper"><strong>Operação <br>
+                            <select id="Oper" required>
+                                <option selected disabled value="">Selecione</option>
+                                <option value="gsm">GSM</option>
+                                <option value="lte">LTE</option>
+                            </Select>
+                            </strong></label>
+                            <br>
+                            <label for="ativo"><strong>Ativo? <br>
+                            <select id="ativo" required>
+                                <option selected disabled value="">Selecione</option>
+                                <option value="s">SIM</option>
+                                <option value="n">NÃO</option>
+                            </Select>
+                            </strong></label>
+                        </div>
+                    </fieldset>
+                    <button class="botao2" type="submit" onsubmit="">Salvar</button> 
+                </div>
+                <div class="container3">
+                    <fieldset class="grupoOper">
+                        <!-- Campo do select Operadora "Operadora" e css de classe "campo" -->
+                        <label for="nOper"><strong>Nome da Operadora <br>
+                        <select id="nOper" required>
+                            <option selected disabled value="">Selecione</option>
+                            <option value="tim">TIM</option>
+                            <option value="claro">CLARO</option>
+                            <option value="vivo">VIVO</option>
+                            <option value="oi">OI</option>
+                        </Select>
+                        </strong></label>
+                    </fieldset> <br>
+                    <button class="botao3" type="submit" onsubmit="">Deletar Operadora</button> 
+                    <button class="botao4" type="submit" onsubmit="">Salvar</button> 
+                </div>           
+            </form>
+
+
+
+            <div class="container5">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th value="id">id Operadora</th>
+                            <th value="operadora">Operadora</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                                <td value="id">001</td>
+                                <td value="operadora">Claro</td>
+                        </tr>
+                        <tr>
+                            <td value="id">002</td>
+                            <td value="operadora">Vivo</td>
+                        </tr>
+                        <tr>
+                            <td value="id">003</td>
+                            <td value="operadora">Tim</td>
+                        </tr>
+                        <tr>
+                            <td value="id">004</td>
+                            <td value="operadora">Oi</td>
+                        </tr>
+                    </tbody>
+                  </table>
+            </div>           
+        </div> 
+    </body>
+</html>
