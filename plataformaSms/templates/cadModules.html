@@ -1,128 +1,108 @@
-{% extends 'base.html' %}
-
-{% block body %}
-        <div class="container">
-            <!-- <h1>Cadastro de Módulos</h1> -->
-           <div class="row">
-                <div class="col col-5">
-                   <form method="POST" action="" class="border p-4 mt-2">
-                       {{ form_cadastroModulos.csrf_token }}
-                        <legend>
-                            <img src="/static/icons_bootstrap/cpu-fill.svg" width="35" height="35"  fill="currentColor" alt="Bootstrap">&nbsp;&nbsp;
-                            Cadastrar Módulos
-                        </legend>
-                       <hr>
-                        <fieldset>
-                            <div class="form-group">
-                                {{ form_cadastroModulos.descrModule.label(class="form-control-label") }}
-                               {% if form_cadastroModulos.descrModule.errors %}
-                                    {{ form_cadastroModulos.descrModule(class="form-control is-invalid") }}
-                                    <div class="invalid-feedback">
-                                        {% for erro in form_cadastroModulos.descrModule.errors %}
-                                            {{ erro }}
-                                        {% endfor %}
-                                    </div>
-                               {% else %}
-                                    {{ form_cadastroModulos.descrModule(class="form-control") }}
-                               {% endif %}                                
-                            </div>
-                            <!------------------------ 2 Campo -------------------------->
-                            <div class="form-group">
-                                {{ form_cadastroModulos.selectOperadoras.label(class="form-control-label") }}
-                               {% if form_cadastroModulos.selectOperadoras.errors %}
-                                    {{ form_cadastroModulos.selectOperadoras(class="form-control is-invalid") }}
-                                    <div class="invalid-feedback">
-                                        {% for erro in form_cadastroModulos.selectOperadoras.errors %}
-                                            {{ erro }}
-                                        {% endfor %}
-                                    </div>
-                               {% else %}
-                                    {{ form_cadastroModulos.selectOperadoras(class="form-control") }}
-                               {% endif %}
-                            </div>
+<!doctype html>
+<html>
+    <head>
+        <!-- Metadados -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- CSS -->
+        <link rel="stylesheet" type="text/css" href="./static/css/styles.css" media="screen">
+        
+        <!-- Título da página (aparece na aba) -->
+        <title>Cadastro Módulo</title>
+    </head>
+    <body> 
+        <div class="container0">
+            <div class="container">
+                <!-- Cabeçalho com título e subtítulo (ambos com css de id "titulo") -->
+                <div>
+                    <h1 id="titulo">Cadastro de Módulo</h1>
+                    <br>
+                </div>
+            </div>
+                <!-- Início do formulário -->
+            <form>
+                <div class="container4">
+                    <fieldset class="grupo2">
+                        <!-- Campo do nome com a descrição do Módulo e css de classe "campo" -->
+                        <fieldset class="cad5">
+                            <label for="descMod"><strong>Descrição do Módulo <br>
+                            <input type="text" name="descMod" id="descMod" required></strong></label>
+                            
+                            <label for="ipMod"><strong>IP do Módulo <br>
+                            <input type="text" name="ipMod" id="ipMod" required></strong></label>
                             <br>
-                            <!------------------------ 3 Campo -------------------------->
-                            <div class="form-group">
-                                {{ form_cadastroModulos.fixed_ip.label(class="form-control-label") }}
-                               {% if form_cadastroModulos.fixed_ip.errors %}
-                                    {{ form_cadastroModulos.fixed_ip(class="form-control is-invalid") }}
-                                    <div class="invalid-feedback">
-                                        {% for erro in form_cadastroModulos.fixed_ip.errors %}
-                                            {{ erro }}
-                                        {% endfor %}
-                                    </div>
-                               {% else %}
-                                    {{ form_cadastroModulos.fixed_ip(class="form-control") }}
-                               {% endif %}                                  
-                            </div>
-                            <!------------------------ 4 Campo -------------------------->
-                            <div class="form-group">
-                                   {{ form_cadastroModulos.udp_Port.label(class="form-control-label") }}
-                                   {% if form_cadastroModulos.udp_Port.errors %}
-                                        {{ form_cadastroModulos.udp_Port(class="form-control is-invalid") }}
-                                        <div class="invalid-feedback">
-                                            {% for erro in form_cadastroModulos.udp_Port.errors %}
-                                                {{ erro }}
-                                            {% endfor %}
-                                        </div>
-                                   {% else %}
-                                        {{ form_cadastroModulos.udp_Port(class="form-control") }}
-                                   {% endif %}                                   
-                            </div>
-                            <!------------------------ 5 Campo -------------------------->
-                           <div class="form-group">
-                               {{ form_cadastroModulos.activeModule.label(class="form-check-label") }}
-                               {{ form_cadastroModulos.activeModule(class="form-check-input") }}
-                           </div>
+                            <br>
+                            <label for="portMod"><strong>Porta <br>
+                            <input type="text" name="portMod" id="portMod" required></strong></label>
                         </fieldset>
-                        {{ form_cadastroModulos.botao_submit_Salvar_CadModulos(class="btn btn-primary mt-2")  }}
-                   </form>
+                        <div class="card4">
+                            <label for="Oper"><strong>Operação <br>
+                            <select id="Oper" required>
+                                <option selected disabled value="">Selecione</option>
+                                <option value="gsm">GSM</option>
+                                <option value="lte">LTE</option>
+                            </Select>
+                            </strong></label>
+                            <br>
+                            <label for="ativo"><strong>Ativo? <br>
+                            <select id="ativo" required>
+                                <option selected disabled value="">Selecione</option>
+                                <option value="s">SIM</option>
+                                <option value="n">NÃO</option>
+                            </Select>
+                            </strong></label>
+                        </div>
+                    </fieldset>
+                    <button class="botao2" type="submit" onsubmit="">Salvar</button> 
                 </div>
-            </div>
+                <div class="container3">
+                    <fieldset class="grupoOper">
+                        <!-- Campo do select Operadora "Operadora" e css de classe "campo" -->
+                        <label for="nOper"><strong>Nome da Operadora <br>
+                        <select id="nOper" required>
+                            <option selected disabled value="">Selecione</option>
+                            <option value="tim">TIM</option>
+                            <option value="claro">CLARO</option>
+                            <option value="vivo">VIVO</option>
+                            <option value="oi">OI</option>
+                        </Select>
+                        </strong></label>
+                    </fieldset> <br>
+                    <button class="botao3" type="submit" onsubmit="">Deletar Operadora</button> 
+                    <button class="botao4" type="submit" onsubmit="">Salvar</button> 
+                </div>           
+            </form>
 
-            <!----- Tabela com os todos os Módulos Cadastrados ---->
-            <br>
-           <div class="row">
-                <div class="col col-10">
-                    <div class="table-responsive">
-                        <p class="titleTabModules"><strong>Módulos Cadastrados</strong></p>
-                        <table class="table">
-                            <thead>
-                                    <tr class="table-primary">
-                                        <th scope="col">Id</th>
-                                        <th scope="col">Descrição do Módulo</th>
-                                        <th scope="col">IP do Módulo</th>
-                                        <th scope="col">Porta UDP</th>
-                                        <th scope="col">Ativo ?</th>
-                                    </tr>
-                            </thead>
-                            <tbody>
-                                    <tr class="table-secondary">
-                                        <td>01</td>
-                                        <td>Modulo 01</td>
-                                        <td>192.168.2.1</td>
-                                        <td>8080</td>
-                                        <td>Sim</td>
-                                    </tr>
-                                    <tr class="table-danger">
-                                        <td>02</td>
-                                        <td>Modulo 02</td>
-                                        <td>192.168.2.2</td>
-                                        <td>8080</td>
-                                        <td>Não</td>
-                                    </tr>
-                                    <tr class="table-warning">
-                                        <td>03</td>
-                                        <td>Modulo 03</td>
-                                        <td>192.168.2.3</td>
-                                        <td>8080</td>
-                                        <td>Não</td>
-                                    </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <!----- Fim da Tabela com os todos os Módulos Cadastrados ---->
-        </div>
-{% endblock %}
+
+
+            <div class="container5">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th value="id">id Operadora</th>
+                            <th value="operadora">Operadora</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                                <td value="id">001</td>
+                                <td value="operadora">Claro</td>
+                        </tr>
+                        <tr>
+                            <td value="id">002</td>
+                            <td value="operadora">Vivo</td>
+                        </tr>
+                        <tr>
+                            <td value="id">003</td>
+                            <td value="operadora">Tim</td>
+                        </tr>
+                        <tr>
+                            <td value="id">004</td>
+                            <td value="operadora">Oi</td>
+                        </tr>
+                    </tbody>
+                  </table>
+            </div>           
+        </div> 
+    </body>
+</html>
