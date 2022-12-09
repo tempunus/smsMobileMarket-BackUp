@@ -1,276 +1,154 @@
-{% extends 'base.html' %}
+<!doctype html>
+<html>
+    <head>
+        <!-- Metadados -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- CSS -->
+        <link rel="stylesheet" type="text/css" href="./static/css/styles.css" media="screen">
+        
+        <!-- Título da página (aparece na aba) -->
+        <title>Cadastro XML-GSM</title>
+    </head>
+    </head>
+    <body> 
+        <div class="container0">
+            <div class="container">
+                <!-- Cabeçalho com título e subtítulo (ambos com css de id "titulo") -->
+                <div>
+                    <h1 id="titulo">Cadastro de Xml</h1>
+                    <p id="subtitulo">Módulos GSM</p>
+                    <br>
+                </div>
+            </div>
+                <!-- Início do formulário -->
+            <form>
+                <div class="container1">
+                    <fieldset class="grupo1">
+                        <!-- Campo informações dos "Módulos" e css de classe "campo" -->
+                        <div class="card6">
+                            <label for="cidade"><strong>Cidade</strong></label>
+                            <select id="cidade" required>
+                                <option selected disabled value="">Selecione</option>
+                                <option value="sp">São Paulo</option>
+                                <option value="cp">Campinas</option>
+                                <option value="sjc">São José dos Campos</option>
+                                <option value="st">Santos</option>
+                            </Select>
+                            
+                            <label for="modulo"><strong>Módulo</strong></label>
+                            <select id="modulo" required>
+                                <option selected disabled value="">Selecione</option>
+                                <option value="b1">Módulo B1</option>
+                                <option value="b3">Módulo B3</option>
+                                <option value="b7">Módulo B7</option>
+                                <option value="b28">Módulo B28</option>
+                            </Select>
+                        </div>
+                    </fieldset> <br>
+                    <fieldset class="grupo1">
+                        <div class="card7">
+                            <label for="rxgain"><strong>rxGain</strong></label>
+                            <input type="text" name="rxgain" id="rxgain" required>
+                            <label for="txpwr"><strong>txPwr</strong></label>
+                            <input type="text" name="txpwr" id="txpwr" required>
+                        </div>
+                        <button class="botao1" type="submit" onsubmit="">Salvar</button> 
+                    </fieldset>
+                    
+                </div>
+                <div class="container5">
+                    <fieldset>
+                        <!-- Campo de frequencias(input) e css de classe "card" -->
+                        <p id="subtitulo2"><strong>Item</strong></p>
+                        <br>
+                        <div class="card">
+                            <label for="arfcn"><strong>ARFCN <br>
+                            <input type="text" name="arfcn" id="arfcn" required></strong></label>
+                            <label for="mcc"><strong>MCC <br>
+                            <input type="text" name="mcc" id="mcc" required></strong></label>
+                            <label for="mcn"><strong>MNC <br>
+                            <input type="text" name="mcn" id="mcn" required></strong></label>
+                        </div>
+                        <div class="card1">
+                            <label for="lai"><strong>LAI <br>
+                            <input type="text" name="lai" id="lai" required></strong></label>
+                            <label for="sib3cellid"><strong>SIB3CELLID <br>
+                            <input type="text" name="sib3cellid" id="sib3cellid" required></strong></label>
+                            <label for="bsic"><strong>BSIC <br>
+                            <input type="text" name="bsic" id="bsic" required></strong></label>
+                        </div>  
+                        <div class="card2">
+                            <label for="cro"><strong>CRO <br>
+                            <input type="text" name="cro" id="cro" required></strong></label>
+                            <label for="rxlevaccmin"><strong>RXLEVACCMIN <br>
+                            <input type="text" name="rxlevaccmin" id="rxlevaccmin" required></strong></label>
+                            <label for="reselcthyst"><strong>RESELCTHYST <br>
+                            <input type="text" name="reselcthyst" id="reselcthyst" required></strong></label>
+                        </div>
+                        <div class="card3">
+                            <label for="nbfreq"><strong>NBFREQ <br>
+                            <input type="text" name="nbfreq" id="nbfreq" required></strong></label>
 
-{% block body %}
-        <div class="container">
-            <!-- <h1>Cadastro de Módulos</h1> -->
-             <div class="row">
-                 <button class ="chama"><a href=""></a> chama</button>
-                <div class="col col-3">
-                    {{ form_cad_conf_xmls.csrf_token }}
-                        <legend>
-                            <img src="/static/icons_bootstrap/cpu-fill.svg" width="35" height="35"  fill="currentColor" alt="Bootstrap">&nbsp;&nbsp;
-                            Cadastrar XML
-                        </legend>
-                    <hr>
-                        <fieldset>
-                            <!------------------------ 1º Campo descrXML -------------------------->
-                            <div class="form-floating mb-2">
-                                {{ form_cad_conf_xmls.descrXML.label(class="form-control-label") }}
-                            {% if form_cad_conf_xmls.descrXML.errors %}
-                                    {{ form_cad_conf_xmls.descrXML(class="form-control is-invalid") }}
-                                    <div class="invalid-feedback">
-                                        {% for erro in form_cad_conf_xmls.descrXML.errors %}
-                                            {{ erro }}
-                                        {% endfor %}
-                                    </div>
-                            {% else %}
-                                    {{ form_cad_conf_xmls.descrXML(class="form-control") }}
-                            {% endif %}                                
-                            </div>
-                            <!------------------------ 2º Campo rxGain -------------------------->
-                            <div class="form-group">
-                                {{ form_cad_conf_xmls.rxGain.label(class="form-control-label") }}
-                            {% if form_cad_conf_xmls.rxGain.errors %}
-                                    {{ form_cad_conf_xmls.rxGain(class="form-control is-invalid") }}
-                                    <div class="invalid-feedback">
-                                        {% for erro in form_cad_conf_xmls.rxGain.errors %}
-                                            {{ erro }}
-                                        {% endfor %}
-                                    </div>
-                            {% else %}
-                                    {{ form_cad_conf_xmls.rxGain(class="form-control") }}
-                            {% endif %}                                
-                            </div>
-                            <!------------------------ 3º Campo txPwr -------------------------->
-                            <div class="form-group">
-                                {{ form_cad_conf_xmls.txPwr.label(class="form-control-label") }}
-                            {% if form_cad_conf_xmls.txPwr.errors %}
-                                    {{ form_cad_conf_xmls.txPwr(class="form-control is-invalid") }}
-                                    <div class="invalid-feedback">
-                                        {% for erro in form_cad_conf_xmls.txPwr.errors %}
-                                            {{ erro }}
-                                        {% endfor %}
-                                    </div>
-                            {% else %}
-                                    {{ form_cad_conf_xmls.txPwr(class="form-control") }}
-                            {% endif %}                                
-                            </div>
-                            <!------------------------ 3.1 Campo cell -------------------------->
-                            <div class="form-group">
-                                {{ form_cad_conf_xmls.cell.label(class="form-control-label") }}
-                            {% if form_cad_conf_xmls.cell.errors %}
-                                    {{ form_cad_conf_xmls.cell(class="form-control is-invalid") }}
-                                    <div class="invalid-feedback">
-                                        {% for erro in form_cad_conf_xmls.cell.errors %}
-                                            {{ erro }}
-                                        {% endfor %}
-                                    </div>
-                            {% else %}
-                                    {{ form_cad_conf_xmls.cell(class="form-control") }}
-                            {% endif %}                                
-                            </div>
-                        </fieldset>
-                        {{ form_cad_conf_xmls.botao_Salvar(class="btn btn-primary mt-2")  }}
-                </form>
-                </div>
-            </div>
-        <div class="container">
-            <!-- <h1>Cadastro de Módulos</h1> -->
-           <div class="row">
-                <div class="col col-5">
-                   <form method="POST" action="" class="border p-4 mt-2">
-                       {{ form_cad_conf_xmls.csrf_token }}
-                       <hr>
-                        <fieldset>
-                            <!------------------------ 4º Campo arfcn -------------------------->
-                            <div class="form-group">
-                                {{ form_cad_conf_xmls.arfcn.label(class="form-control-label") }}
-                               {% if form_cad_conf_xmls.arfcn.errors %}
-                                    {{ form_cad_conf_xmls.arfcn(class="form-control is-invalid") }}
-                                    <div class="invalid-feedback">
-                                        {% for erro in form_cad_conf_xmls.arfcn.errors %}
-                                            {{ erro }}
-                                        {% endfor %}
-                                    </div>
-                               {% else %}
-                                    {{ form_cad_conf_xmls.arfcn(class="form-control") }}
-                               {% endif %}                                
-                            </div>
-                            <!------------------------ 5º Campo mcc -------------------------->
-                            <div class="form-group">
-                                {{ form_cad_conf_xmls.mcc.label(class="form-control-label") }}
-                               {% if form_cad_conf_xmls.mcc.errors %}
-                                    {{ form_cad_conf_xmls.mcc(class="form-control is-invalid") }}
-                                    <div class="invalid-feedback">
-                                        {% for erro in form_cad_conf_xmls.mcc.errors %}
-                                            {{ erro }}
-                                        {% endfor %}
-                                    </div>
-                               {% else %}
-                                    {{ form_cad_conf_xmls.mcc(class="form-control") }}
-                               {% endif %}                                
-                            </div>
-                            <!------------------------ 6º Campo mnc -------------------------->
-                            <div class="form-group">
-                                {{ form_cad_conf_xmls.mnc.label(class="form-control-label") }}
-                               {% if form_cad_conf_xmls.mnc.errors %}
-                                    {{ form_cad_conf_xmls.mnc(class="form-control is-invalid") }}
-                                    <div class="invalid-feedback">
-                                        {% for erro in form_cad_conf_xmls.mnc.errors %}
-                                            {{ erro }}
-                                        {% endfor %}
-                                    </div>
-                               {% else %}
-                                    {{ form_cad_conf_xmls.mnc(class="form-control") }}
-                               {% endif %}                                
-                            </div>
-                            <!------------------------ 7º Campo lai -------------------------->
-                            <div class="form-group">
-                                {{ form_cad_conf_xmls.lai.label(class="form-control-label") }}
-                               {% if form_cad_conf_xmls.lai.errors %}
-                                    {{ form_cad_conf_xmls.lai(class="form-control is-invalid") }}
-                                    <div class="invalid-feedback">
-                                        {% for erro in form_cad_conf_xmls.lai.errors %}
-                                            {{ erro }}
-                                        {% endfor %}
-                                    </div>
-                               {% else %}
-                                    {{ form_cad_conf_xmls.lai(class="form-control") }}
-                               {% endif %}                                
-                            </div>
-                            <!------------------------ 8º Campo sib3CellId-------------------------->
-                            <div class="form-group">
-                                {{ form_cad_conf_xmls.sib3CellId.label(class="form-control-label") }}
-                               {% if form_cad_conf_xmls.sib3CellId.errors %}
-                                    {{ form_cad_conf_xmls.sib3CellId(class="form-control is-invalid") }}
-                                    <div class="invalid-feedback">
-                                        {% for erro in form_cad_conf_xmls.sib3CellId.errors %}
-                                            {{ erro }}
-                                        {% endfor %}
-                                    </div>
-                               {% else %}
-                                    {{ form_cad_conf_xmls.sib3CellId(class="form-control") }}
-                               {% endif %}                                
-                            </div>
-                            <!------------------------ 9º Campo bsic -------------------------->
-                            <div class="form-group">
-                                {{ form_cad_conf_xmls.bsic.label(class="form-control-label") }}
-                               {% if form_cad_conf_xmls.bsic.errors %}
-                                    {{ form_cad_conf_xmls.bsic(class="form-control is-invalid") }}
-                                    <div class="invalid-feedback">
-                                        {% for erro in form_cad_conf_xmls.bsic.errors %}
-                                            {{ erro }}
-                                        {% endfor %}
-                                    </div>
-                               {% else %}
-                                    {{ form_cad_conf_xmls.bsic(class="form-control") }}
-                               {% endif %}                                
-                            </div>
-                            <!------------------------ 10º Campo cro -------------------------->
-                            <div class="form-group">
-                                {{ form_cad_conf_xmls.cro.label(class="form-control-label") }}
-                               {% if form_cad_conf_xmls.cro.errors %}
-                                    {{ form_cad_conf_xmls.cro(class="form-control is-invalid") }}
-                                    <div class="invalid-feedback">
-                                        {% for erro in form_cad_conf_xmls.cro.errors %}
-                                            {{ erro }}
-                                        {% endfor %}
-                                    </div>
-                               {% else %}
-                                    {{ form_cad_conf_xmls.cro(class="form-control") }}
-                               {% endif %}                                
-                            </div>
-                            <!-----------------------11º Campo rxLevAccMin-------------------------->
-                            <div class="form-group">
-                                {{ form_cad_conf_xmls.rxLevAccMin.label(class="form-control-label") }}
-                               {% if form_cad_conf_xmls.rxLevAccMin.errors %}
-                                    {{ form_cad_conf_xmls.rxLevAccMin(class="form-control is-invalid") }}
-                                    <div class="invalid-feedback">
-                                        {% for erro in form_cad_conf_xmls.rxLevAccMin.errors %}
-                                            {{ erro }}
-                                        {% endfor %}
-                                    </div>
-                               {% else %}
-                                    {{ form_cad_conf_xmls.rxLevAccMin(class="form-control") }}
-                               {% endif %}                                
-                            </div>
-                            <!------------------------ 12º Campo mnc -------------------------->
-                            <div class="form-group">
-                                {{ form_cad_conf_xmls.reselctHyst.label(class="form-control-label") }}
-                               {% if form_cad_conf_xmls.reselctHyst.errors %}
-                                    {{ form_cad_conf_xmls.reselctHyst(class="form-control is-invalid") }}
-                                    <div class="invalid-feedback">
-                                        {% for erro in form_cad_conf_xmls.reselctHyst.errors %}
-                                            {{ erro }}
-                                        {% endfor %}
-                                    </div>
-                               {% else %}
-                                    {{ form_cad_conf_xmls.reselctHyst(class="form-control") }}
-                               {% endif %}                                
-                            </div>
-                            <!------------------------ 13º Campo nbFreq -------------------------->
-                            <div class="form-group">
-                                {{ form_cad_conf_xmls.nbFreq.label(class="form-control-label") }}
-                               {% if form_cad_conf_xmls.nbFreq.errors %}
-                                    {{ form_cad_conf_xmls.nbFreq(class="form-control is-invalid") }}
-                                    <div class="invalid-feedback">
-                                        {% for erro in form_cad_conf_xmls.nbFreq.errors %}
-                                            {{ erro }}
-                                        {% endfor %}
-                                    </div>
-                               {% else %}
-                                    {{ form_cad_conf_xmls.nbFreq(class="form-control") }}
-                               {% endif %}                                
-                            </div>
-                        </fieldset>
-                        {{ form_cad_conf_xmls.botao_Salvar(class="btn btn-primary mt-2")  }}
-                   </form>
-                </div>
-            </div>
-
-            <!----- Tabela com os todos os Módulos Cadastrados ---->
-            <br>
-           <div class="row">
-                <div class="col col-10">
-                    <div class="table-responsive">
-                        <p class="titleTabModules"><strong>Módulos Cadastrados</strong></p>
-                        <table class="table">
-                            <thead>
-                                    <tr class="table-primary">
-                                        <th scope="col">Id</th>
-                                        <th scope="col">Descrição do Módulo</th>
-                                        <th scope="col">IP do Módulo</th>
-                                        <th scope="col">Porta UDP</th>
-                                        <th scope="col">Ativo ?</th>
-                                    </tr>
-                            </thead>
-                            <tbody>
-                                    <tr class="table-secondary">
-                                        <td>01</td>
-                                        <td>Modulo 01</td>
-                                        <td>192.168.2.1</td>
-                                        <td>8080</td>
-                                        <td>Sim</td>
-                                    </tr>
-                                    <tr class="table-danger">
-                                        <td>02</td>
-                                        <td>Modulo 02</td>
-                                        <td>192.168.2.2</td>
-                                        <td>8080</td>
-                                        <td>Não</td>
-                                    </tr>
-                                    <tr class="table-warning">
-                                        <td>03</td>
-                                        <td>Modulo 03</td>
-                                        <td>192.168.2.3</td>
-                                        <td>8080</td>
-                                        <td>Não</td>
-                                    </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <!----- Fim da Tabela com os todos os Módulos Cadastrados ---->
-        </div>
-{% endblock %}
+                            <button class="botao" type="submit" onsubmit="">Salvar</button> 
+                        </div>
+                    </fieldset>
+                </div>           
+            </form>
+            <div class="container5">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th value="id">id</th>
+                            <th value="rxGain">rxGain</th>
+                            <th value="txPwr">txPwr</th>
+                            <th value="arfcn">arfcn</th>
+                            <th value="mcc">mcc</th>
+                            <th value="mnc">mnc</th>
+                            <th value="lai">lai</th>
+                            <th value="sib3cellid">sib3cellid</th>
+                            <th value="bsic">bsic</th>
+                            <th value="CRO">CRO</th>
+                            <th value="rxlevaccmin">rxlevaccmin</th>
+                            <th value="reselcthyst">reselcthyst</th>
+                            <th value="nbfreq">nbfreq</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th value="id">10</td>
+                            <td value="rxGain">652</td>
+                            <td value="txPwr">255</td>
+                            <td value="arfcn">255</td>
+                            <td value="mcc">mc0c</td>
+                            <td value="mnc">0</td>
+                            <td value="lai">0</td>
+                            <td value="sib3cellid">135</td>
+                            <td value="bsic">258</td>
+                            <td value="CRO">1958</td>
+                            <td value="rxlevaccmin">1</td>
+                            <td value="reselcthyst">5</td>
+                            <td value="nbfreq">731</td>
+                      </tr>
+                      <tr>
+                        <th value="id">11</td>
+                            <td value="rxGain">652</td>
+                            <td value="txPwr">255</td>
+                            <td value="arfcn">255</td>
+                            <td value="mcc">mc0c</td>
+                            <td value="mnc">0</td>
+                            <td value="lai">0</td>
+                            <td value="sib3cellid">135</td>
+                            <td value="bsic">258</td>
+                            <td value="CRO">1958</td>
+                            <td value="rxlevaccmin">1</td>
+                            <td value="reselcthyst">5</td>
+                            <td value="nbfreq">731</td>
+                      </tr>
+                    </tbody>
+                </table>
+                <button class="botao5" type="submit" onsubmit="">Editar</button> 
+            </div>           
+        </div> 
+    </body>
+</html>
