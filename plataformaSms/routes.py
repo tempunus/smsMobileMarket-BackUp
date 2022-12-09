@@ -1,8 +1,8 @@
 import flask_bcrypt
 from flask import render_template, redirect, url_for, flash, request, abort
 from plataformaSms import app, database, bcrypt
-from plataformaSms.forms import FormLogin, FormCriarConta, FormEditarPerfil, FormCadastroModulos,\
-     FormCadastroServers, FormCadastroOperadoras, FormCadConfiguraXmls, \
+from plataformaSms.forms import FormCadConfiguraGsm, FormCadConfiguraLte, FormLogin, FormCriarConta, FormEditarPerfil, FormCadastroModulos,\
+     FormCadastroServers, FormCadastroOperadoras, \
     FormConsultarDadosCentral, FormCriarPost
 from plataformaSms.models import Usuario, Post, CadServers, CadModules, CadOperadoras, phone_data
 from flask_login import login_user, logout_user, current_user, login_required
@@ -320,11 +320,22 @@ def consultarDados():
 """
 Páginas referentes o Sistema de Envio de Mensagens
 """
-@app.route('/cadconfigxml', methods=['GET', 'POST'])
+@app.route('/configGsm', methods=['GET', 'POST'])
 @login_required
-def cad_conf_xmls():
-    form_cad_conf_xmls = FormCadConfiguraXmls()
-    return render_template('configXML.html', form_cad_conf_xmls=form_cad_conf_xmls)
+def cad_conf_gsm():
+    form_cad_conf_gsm = FormCadConfiguraGsm()
+    return render_template('configGsm.html', form_cad_conf_gsm=form_cad_conf_gsm)
+
+
+print(f'API_KEY do Google: {app.config["GOOGLE_API_KEY"]}')
+
+#********************************************************************************#
+
+@app.route('/configLte', methods=['GET', 'POST'])
+@login_required
+def cad_conf_lte():
+    form_cad_conf_lte = FormCadConfiguraLte()
+    return render_template('configLte.html', form_cad_conf_lte=form_cad_conf_lte)
 
 
 print(f'API_KEY do Google: {app.config["GOOGLE_API_KEY"]}')

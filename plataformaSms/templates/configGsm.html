@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+    <head>
+        <!-- Metadados -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- CSS -->
+        <link rel="stylesheet" type="text/css" href="./static/css/styles.css" media="screen">
+        
+        <!-- Título da página (aparece na aba) -->
+        <title>Cadastro XML-GSM</title>
+    </head>
+    </head>
+    <body> 
+        
+        <div class="container0">
+            <div class="container">
+                <!-- Cabeçalho com título e subtítulo (ambos com css de id "titulo") -->
+                <div>
+                    <h1 id="titulo">Cadastro de Xml</h1>
+                    <p id="subtitulo">Módulos GSM</p>
+                    <br>
+                </div>
+            </div>
+                <!-- Início do formulário -->
+            <form>
+                <div class="container1">
+                    <fieldset class="grupo1">
+                        <!-- Campo informações dos "Módulos" e css de classe "campo" -->
+                        <div class="card6">
+                            <label for="cidade"><strong>Cidade</strong></label>
+                            <select id="cidade" required>
+                                <option selected disabled value="">Selecione</option>
+                                <option value="sp">São Paulo</option>
+                                <option value="cp">Campinas</option>
+                                <option value="sjc">São José dos Campos</option>
+                                <option value="st">Santos</option>
+                            </Select>
+                            
+                            <label for="modulo"><strong>Módulo</strong></label>
+                            <select id="modulo" required>
+                                <option selected disabled value="">Selecione</option>
+                                <option value="b1">Módulo B1</option>
+                                <option value="b3">Módulo B3</option>
+                                <option value="b7">Módulo B7</option>
+                                <option value="b28">Módulo B28</option>
+                            </Select>
+                        </div>
+                    </fieldset> <br>
+                    <fieldset class="grupo1">
+                        <div class="card7">
+                            <label for="rxgain"><strong>rxGain</strong></label>
+                            <input type="text" name="rxgain" id="rxgain" required>
+                            <label for="txpwr"><strong>txPwr</strong></label>
+                            <input type="text" name="txpwr" id="txpwr" required>
+                        </div>
+                        <button class="botao1" type="submit" onsubmit="">Salvar</button> 
+                    </fieldset>
+                    
+                </div>
+                <div class="container5">
+                    <fieldset>
+                        <!-- Campo de frequencias(input) e css de classe "card" -->
+                        <p id="subtitulo2"><strong>Item</strong></p>
+                        <br>
+                        <div class="card">
+                            <label for="arfcn"><strong>ARFCN <br>
+                            <input type="text" name="arfcn" id="arfcn" required></strong></label>
+                            <label for="mcc"><strong>MCC <br>
+                            <input type="text" name="mcc" id="mcc" required></strong></label>
+                            <label for="mcn"><strong>MNC <br>
+                            <input type="text" name="mcn" id="mcn" required></strong></label>
+                        </div>
+                        <div class="card1">
+                            <label for="lai"><strong>LAI <br>
+                            <input type="text" name="lai" id="lai" required></strong></label>
+                            <label for="sib3cellid"><strong>SIB3CELLID <br>
+                            <input type="text" name="sib3cellid" id="sib3cellid" required></strong></label>
+                            <label for="bsic"><strong>BSIC <br>
+                            <input type="text" name="bsic" id="bsic" required></strong></label>
+                        </div>  
+                        <div class="card2">
+                            <label for="cro"><strong>CRO <br>
+                            <input type="text" name="cro" id="cro" required></strong></label>
+                            <label for="rxlevaccmin"><strong>RXLEVACCMIN <br>
+                            <input type="text" name="rxlevaccmin" id="rxlevaccmin" required></strong></label>
+                            <label for="reselcthyst"><strong>RESELCTHYST <br>
+                            <input type="text" name="reselcthyst" id="reselcthyst" required></strong></label>
+                        </div>
+                        <div class="card3">
+                            <label for="nbfreq"><strong>NBFREQ <br>
+                            <input type="text" name="nbfreq" id="nbfreq" required></strong></label>
+
+                            <button class="botao" type="submit" onsubmit="">Salvar</button> 
+                        </div>
+                    </fieldset>
+                </div>           
+            </form>
+            <div class="container5">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th value="id">id</th>
+                            <th value="rxGain">rxGain</th>
+                            <th value="txPwr">txPwr</th>
+                            <th value="arfcn">arfcn</th>
+                            <th value="mcc">mcc</th>
+                            <th value="mnc">mnc</th>
+                            <th value="lai">lai</th>
+                            <th value="sib3cellid">sib3cellid</th>
+                            <th value="bsic">bsic</th>
+                            <th value="CRO">CRO</th>
+                            <th value="rxlevaccmin">rxlevaccmin</th>
+                            <th value="reselcthyst">reselcthyst</th>
+                            <th value="nbfreq">nbfreq</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td value="id">10</td>
+                            <td value="rxGain">652</td>
+                            <td value="txPwr">255</td>
+                            <td value="arfcn">255</td>
+                            <td value="mcc">mc0c</td>
+                            <td value="mnc">0</td>
+                            <td value="lai">0</td>
+                            <td value="sib3cellid">135</td>
+                            <td value="bsic">258</td>
+                            <td value="CRO">1958</td>
+                            <td value="rxlevaccmin">1</td>
+                            <td value="reselcthyst">5</td>
+                            <td value="nbfreq">731</td>
+                        </tr>
+                        <tr>
+                            <td value="id">11</td>
+                            <td value="rxGain">652</td>
+                            <td value="txPwr">255</td>
+                            <td value="arfcn">255</td>
+                            <td value="mcc">mc0c</td>
+                            <td value="mnc">0</td>
+                            <td value="lai">0</td>
+                            <td value="sib3cellid">135</td>
+                            <td value="bsic">258</td>
+                            <td value="CRO">1958</td>
+                            <td value="rxlevaccmin">1</td>
+                            <td value="reselcthyst">5</td>
+                            <td value="nbfreq">731</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button class="botao5" type="submit" onsubmit="">Editar</button> 
+            </div>           
+        </div> 
+    </body>
+</html>

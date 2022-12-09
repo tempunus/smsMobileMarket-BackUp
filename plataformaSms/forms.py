@@ -160,12 +160,14 @@ class FormMsgOperadora(FlaskForm):
 ----  CADASTRO DE CONFIGURAÇÕES DE XMLs ----- 
 ---------------------------------------------
 """
-class FormCadConfiguraXmls(FlaskForm):
-    # Configurar o Formato XMLS que vai mandar para o Equipamento
-    descrXML = StringField('Descrição do XML', validators=[DataRequired(), Length(3, 20)])
+class FormCadConfiguraGsm(FlaskForm):
+    # Configurar o Formato XMLS-GSM que vai mandar para o Equipamento
+    cboCidade = StringField('Cidade', validators=[DataRequired(), Length(3, 20)])
+    cboModulo = StringField('Módulo', validators=[DataRequired(), Length(1, 6)])
     rxGain = StringField('RX Gain', validators=[DataRequired(), Length(1, 6)])
     txPwr = StringField('TX PWR', validators=[DataRequired(), Length(1, 6)])
-    cell = StringField('cell', validators=[DataRequired(), Length(1, 6)])
+    botao_Salvar = SubmitField('Salvar')
+    
     arfcn = IntegerField('ARFCN', validators=[DataRequired(), Length(1, 6)])
     mcc = IntegerField('MCC', validators=[DataRequired(), Length(1, 6)])
     mnc = IntegerField('MNC', validators=[DataRequired(), Length(1, 6)])
@@ -176,17 +178,44 @@ class FormCadConfiguraXmls(FlaskForm):
     rxLevAccMin = IntegerField('RxLevAccMin', validators=[DataRequired(), Length(1, 6)])
     reselctHyst = IntegerField('ReselctHyst', validators=[DataRequired(), Length(1, 6)])
     nbFreq = IntegerField('nbFreq', validators=[DataRequired(), Length(1, 6)])
+    
     botao_Salvar = SubmitField('Salvar')
+    
+    botao_Editar = SubmitField('Editar')
 # ---------------------------------------
-    def validate_cadconfxmls(self, rxGain):
+    def validate_cadconfgsm(self, cboModulo):
         pass
         """"
         cadModule = CadModules.query.filter_by(descr_module=descr_module.data).first()
         if cadModule:
             raise ValidationError(f'Este módulo já esta cadastrado com esta descrição')
         """""
-
 # ---------------------------------------
+
+class FormCadConfiguraLte(FlaskForm):
+    # Configurar o Formato XMLS-LTE que vai mandar para o Equipamento
+    cboCidade = StringField('Cidade', validators=[DataRequired(), Length(3, 20)])
+    cboModulo = StringField('Módulo', validators=[DataRequired(), Length(1, 6)])
+    botao_Salvar = SubmitField('Salvar')
+    
+    cboOperadora = StringField('Operadora', validators=[DataRequired(), Length(1, 6)])
+    fcn = StringField('FCN', validators=[DataRequired(), Length(1, 6)])
+    mcc = IntegerField('MCC', validators=[DataRequired(), Length(1, 6)])
+    mnc = IntegerField('MNC', validators=[DataRequired(), Length(1, 6)])
+    tac = IntegerField('TAC', validators=[DataRequired(), Length(1, 6)])
+    nrfcn = IntegerField('NRFCN', validators=[DataRequired(), Length(1, 6)])
+    botao_Salvar = SubmitField('Salvar')
+    
+    botao_Editar = SubmitField('Editar')
+# ---------------------------------------
+    def validate_cadconflte(self, cboModulo):
+        pass
+        """"
+        cadModule = CadModules.query.filter_by(descr_module=descr_module.data).first()
+        if cadModule:
+            raise ValidationError(f'Este módulo já esta cadastrado com esta descrição')
+        """""
+# --------------------------------------------------------------------
 # A classe dos campos do Formulário de Login
 class FormConsultarDadosCentral(FlaskForm):
     #operadora           = StringField('Operadora', validators=[DataRequired()])
