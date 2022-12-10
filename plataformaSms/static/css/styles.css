@@ -338,7 +338,7 @@ fieldset.grupo .campo {
   text-shadow: 1px 1px 1px rgb(0 0 0 / 50%);
   position: absolute;
   top: 31%;
-  left: 50%;
+  left: 85%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
 }

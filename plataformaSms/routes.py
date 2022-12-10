@@ -241,14 +241,24 @@ def cad_Modules():
 
         else:
             # Salvar os dados do Cadastro de módulo
+            #cadmodulesDB = CadModules(descrModule=form_cadastroModulos.descrModule.data,
+                                      #fixed_ip=form_cadastroModulos.fixed_ip.data,
+                                      #udpPort=int(form_cadastroModulos.udp_Port.data),
+                                      #ativo=form_cadastroModulos.activeModule.data,
+                                      #id_Operadora=int(form_cadastroModulos.selectOperadoras.data)
+                                      #)
+            #-------------------------------------------------------------------------------------------     
+            
             cadmodulesDB = CadModules(descrModule=form_cadastroModulos.descrModule.data,
+                                      modoDeOperacao=form_cadastroModulos.selectOperacao.data,
                                       fixed_ip=form_cadastroModulos.fixed_ip.data,
                                       udpPort=int(form_cadastroModulos.udp_Port.data),
                                       ativo=form_cadastroModulos.activeModule.data,
-                                      id_Operadora=int(form_cadastroModulos.selectOperadoras.data)
-                                      )
+                                      connected=0
+                                      )     
             database.session.add(cadmodulesDB)
             database.session.commit()
+            
             print(f"Atenção o módulo {form_cadastroModulos.descrModule.data} foi cadastrado com sucesso.")
             flash(f"Atenção o módulo {form_cadastroModulos.descrModule.data} foi cadastrado com sucesso.", "alert-success")
             # Depois que cadastrar o novo Registro, listar na tabela abaixo do cadastro

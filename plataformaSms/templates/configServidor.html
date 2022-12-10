@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+    <head>
+        <!-- Metadados -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- CSS -->
+        <link rel="stylesheet" type="text/css" href="css/styles.css" media="screen">
+        
+        <!-- Título da página (aparece na aba) -->
+        <title>Cadastro Servidor</title>
+    </head>
+    <body> 
+        <div class="container0">
+            <div class="container">
+                <!-- Cabeçalho com título e subtítulo (ambos com css de id "titulo") -->
+                <div>
+                    <h1 id="titulo">Cadastro de Servidor</h1>
+                    <br>
+                </div>
+            </div>
+                <!-- Início do formulário -->
+            <form>
+                <div class="container4">
+                    <fieldset class="grupo2">
+                    {{ form_cadServers.descrServer.label(class="form-control-label") }}
+                        <!-- Campo do nome com a descrição do Módulo e css de classe "campo" -->
+                        <fieldset class="cad5">
+                            <label for="descMod" class="form-label"><strong>Descrição do Servidor <br>
+                            <input type="text" name="descMod" id="descMod" required></strong></label>
+                            
+                            <label for="ipMod"><strong>IP do Servidor <br>
+                            <input type="text" name="ipMod" id="ipMod" required></strong></label>
+                            <br>
+                            <br>
+                            <label for="portMod"><strong>Porta UDP<br>
+                            <input type="text" name="portMod" id="portMod" required></strong></label>
+                        </fieldset>
+                            <label for="ativo"><strong>Servidor Ativo ? <br>
+                            <select id="ativo" required>
+                                <option selected disabled value="">Selecione</option>
+                                <option value="s">SIM</option>
+                                <option value="n">NÃO</option>
+                            </Select>
+                            </strong></label>
+                        </div>
+<!---------------------TABLE-------------------------------->
+                        <div class="form-group">
+                            {{ form_cadServers.descrServer.label(class="form-control-label") }}
+                           {% if form_cadServers.descrServer.errors %}
+                                {{ form_cadServers.descrServer(class="form-control is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for erro in form_cadServers.descrServer.errors %}
+                                        {{ erro }}
+                                    {% endfor %}
+                                </div>
+                           {% else %}
+                                {{ form_cadServers.descrServer(class="form-control") }}
+                           {% endif %}                                
+                        </div>
+
+<!---------------------TABLE-------------------------------->
+                    </fieldset>
+                    <button class="botao2" type="submit" onsubmit="">Salvar</button> 
+                </div>
+            </form>
+<!---------------------TABLE-------------------------------->
+            <div class="container5">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th value="id">id</th>
+                            <th value="descServ">Descrição do Servidor</th>
+                            <th value="ipServ">IP do Servidor</th>
+                            <th value="porta">Porta UDP</th>
+                            <th value="active">Ativo?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table-secondary">
+                            <td>01</td>
+                            <td>Servidor 01</td>
+                            <td>192.168.2.1</td>
+                            <td>8080</td>
+                            <td>Sim</td>
+                        </tr>
+                        <tr class="table-danger">
+                            <td>02</td>
+                            <td>Servidor 02</td>
+                            <td>192.168.2.2</td>
+                            <td>8080</td>
+                            <td>Não</td>
+                        </tr>
+                        <tr class="table-warning">
+                            <td>03</td>
+                            <td>Servidor 03</td>
+                            <td>192.168.2.3</td>
+                            <td>8080</td>
+                            <td>Não</td>
+                        </tr>
+                    </tbody>
+                  </table>
+            </div>           
+        </div> 
+    </body>
+</html>

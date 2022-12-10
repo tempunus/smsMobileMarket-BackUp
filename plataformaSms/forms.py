@@ -124,13 +124,18 @@ def buscar_lista_Operadoras():
 
 class FormCadastroModulos(FlaskForm):
     OPERADORAS = buscar_lista_Operadoras()
+    OPERACAO = ('GSM','LTE')
+    ACTIVEMODULE = ('SIM','NÃO')
 
-    selectOperadoras = SelectField(u'Operadora', choices=OPERADORAS, validators=[DataRequired()])
-    descrModule = StringField('Informar a descrição do Módulo', validators=[DataRequired(), Length(3, 20)])
-    fixed_ip = StringField('Informar o IP do Módulo', validators=[DataRequired(), Length(7, 15)])
-    udp_Port = StringField('Informar a Porta UDP', validators=[DataRequired(), Length(2, 4)])
-    # udp_Port = IntegerField('Informar a Porta UDP', validators=[DataRequired(), Length(2, 4)])
-    activeModule = BooleanField('Modulo Ativo ?')
+    descrModule = StringField('Descrição do Módulo', validators=[DataRequired(), Length(3, 20)])
+    fixed_ip = StringField('IP do Módulo', validators=[DataRequired(), Length(7, 15)])
+    udp_Port = StringField('Porta UDP', validators=[DataRequired(), Length(2, 4)])
+    selectOperacao = SelectField(u'Operacao', choices=OPERACAO, validators=[DataRequired()])
+    selectActiveModule = SelectField(u'ActiveModule', choices=ACTIVEMODULE, validators=[DataRequired()])
+
+    # activeModule = BooleanField('Modulo Ativo ?')
+    
+    # selectOperadoras = SelectField(u'Operadora', choices=OPERADORAS, validators=[DataRequired()])
     # print(f"Operadora Selecionada: {selectOperadoras}")
     botao_submit_Salvar_CadModulos = SubmitField('Salvar')
 # ---------------------------------------
