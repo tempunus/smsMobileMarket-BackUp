@@ -20,44 +20,93 @@
                 </div>
             </div>
                 <!-- Início do formulário -->
-            <form>
-                <div class="container4">
+        <div class="container4">
+            <form method="POST" action="" class="border p-4 mt-2">
+                        {{ form_cadastroModulos.csrf_token }}
                     <fieldset class="grupo2">
                         <!-- Campo do nome com a descrição do Módulo e css de classe "campo" -->
-                        <fieldset class="cad5">
-                            <label for="descMod"><strong>Descrição do Módulo <br>
-                            <input type="text" name="descMod" id="descMod" required></strong></label>
-                            
-                            <label for="ipMod"><strong>IP do Módulo <br>
-                            <input type="text" name="ipMod" id="ipMod" required></strong></label>
-                            <br>
-                            <br>
-                            <label for="portMod"><strong>Porta <br>
-                            <input type="text" name="portMod" id="portMod" required></strong></label>
-                        </fieldset>
-                        <div class="card4">
-                            <label for="Oper"><strong>Operação <br>
-                            <select id="Oper" required>
-                                <option selected disabled value="">Selecione</option>
-                                <option value="gsm">GSM</option>
-                                <option value="lte">LTE</option>
-                            </Select>
-                            </strong></label>
-                            <br>
-                            <label for="ativo"><strong>Ativo? <br>
-                            <select id="ativo" required>
-                                <option selected disabled value="">Selecione</option>
-                                <option value="s">SIM</option>
-                                <option value="n">NÃO</option>
-                            </Select>
-                            </strong></label>
+                        <!------------------------ 1 Campo -------------------------->
+                        <div class="form-group">
+                                {{ form_cadastroModulos.descrModule.label(class="form-control-label") }}
+                                {% if form_cadastroModulos.descrModule.errors %}
+                                     {{ form_cadastroModulos.descrModule(class="form-control is-invalid") }}
+                                     <div class="invalid-feedback">
+                                         {% for erro in form_cadastroModulos.descrModule.errors %}
+                                             {{ erro }}
+                                         {% endfor %}
+                                     </div>
+                                {% else %}
+                                     {{ form_cadastroModulos.descrModule(class="form-control") }}
+                                {% endif %}                                               
+                        </div>
+                        <!------------------------ 2 Campo -------------------------->   
+                        <div class="form-group">
+                            {{ form_cadastroModulos.fixed_ip.label(class="form-control-label") }}
+                            {% if form_cadastroModulos.fixed_ip.errors %}
+                                 {{ form_cadastroModulos.fixed_ip(class="form-control is-invalid") }}
+                                 <div class="invalid-feedback">
+                                     {% for erro in form_cadastroModulos.fixed_ip.errors %}
+                                         {{ erro }}
+                                     {% endfor %}
+                                 </div>
+                            {% else %}
+                                 {{ form_cadastroModulos.fixed_ip(class="form-control") }}
+                            {% endif %}                                               
+                        </div>
+                        <!------------------------ 3 Campo -------------------------->  
+                        <div class="form-group">
+                            {{ form_cadastroModulos.udp_Port.label(class="form-control-label") }}
+                            {% if form_cadastroModulos.udp_Port.errors %}
+                                 {{ form_cadastroModulos.udp_Port(class="form-control is-invalid") }}
+                                 <div class="invalid-feedback">
+                                     {% for erro in form_cadastroModulos.udp_Port.errors %}
+                                         {{ erro }}
+                                     {% endfor %}
+                                 </div>
+                            {% else %}
+                                 {{ form_cadastroModulos.udp_Port(class="form-control") }}
+                            {% endif %}                                               
+                        </div>                           
+                        <!------------------------ 4 Campo -------------------------->  
+                        <div class="form-group">
+                            {{ form_cadastroModulos.selectOperacao.label(class="form-control-label") }}
+                           {% if form_cadastroModulos.selectOperacao.errors %}
+                                {{ form_cadastroModulos.selectOperacao(class="form-control is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for erro in form_cadastroModulos.selectOperacao.errors %}
+                                        {{ erro }}
+                                    {% endfor %}
+                                </div>
+                           {% else %}
+                                {{ form_cadastroModulos.selectOperacao(class="form-control") }}
+                           {% endif %}
+                        </div>
+                        <br>
+                        <!------------------------ 5 Campo -------------------------->  
+                        <div class="form-group">
+                            {{ form_cadastroModulos.selectActiveModule.label(class="form-control-label") }}
+                           {% if form_cadastroModulos.selectActiveModule.errors %}
+                                {{ form_cadastroModulos.selectActiveModule(class="form-control is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for erro in form_cadastroModulos.selectActiveModule.errors %}
+                                        {{ erro }}
+                                    {% endfor %}
+                                </div>
+                           {% else %}
+                                {{ form_cadastroModulos.selectActiveModule(class="form-control") }}
+                           {% endif %}
+                        </div>
+                        <br>
+                        <!------------------------ 6 Campo -------------------------->  
                         </div>
                     </fieldset>
                     <button class="botao2" type="submit" onsubmit="">Salvar</button> 
                 </div>
-                <div class="container3">
+                <!------------------------ fim Campo -------------------------->  
+
+           <!-- <div class="container3">
                     <fieldset class="grupoOper">
-                        <!-- Campo do select Operadora "Operadora" e css de classe "campo" -->
+                        <!-- Campo do select Operadora "Operadora" e css de classe "campo"
                         <label for="nOper"><strong>Nome da Operadora <br>
                         <select id="nOper" required>
                             <option selected disabled value="">Selecione</option>
@@ -70,7 +119,7 @@
                     </fieldset> <br>
                     <button class="botao3" type="submit" onsubmit="">Deletar Operadora</button> 
                     <button class="botao4" type="submit" onsubmit="">Salvar</button> 
-                </div>           
+                </div>     -->
             </form>
 
 
