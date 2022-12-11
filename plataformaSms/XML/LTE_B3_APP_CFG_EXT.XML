@@ -1,0 +1,171 @@
+<!--Para todos os LTE igual -->
+<?xml version='1.0' encoding = 'UTF-8' standalone = 'no' ?>
+<content>
+    <workTypeCfgActive>true </workTypeCfgActive>
+    <workTypeCfg>
+        <workType> 0</workType>
+        <followParaValidIndi>false </followParaValidIndi>
+        <imeiTry>true </imeiTry>
+        <tacUpdatePeriodInSec> 360</tacUpdatePeriodInSec>
+        <cellRipRptEn>false </cellRipRptEn>
+        <ueRptWithMeas>true </ueRptWithMeas>
+        <tacLacMax> 0</tacLacMax>
+        <tacLacMin> 0</tacLacMin>
+    </workTypeCfg>
+    <cmmUeRedirectCfgActive>true </cmmUeRedirectCfgActive>
+    <cmmUeRedirectCfg>
+        <rejCause> 16</rejCause>
+<!--Fim para todos os LTE igual -->
+
+<!--Estas linhas são referenciadas no gsm-->
+        <redirectItem itemCnt = "4">
+            <item>
+                <mcc> 724</mcc>
+                <mnc> 3</mnc>
+                <rat>REDIRECT_GSM</rat>
+                <band> 0</band>
+                <fcn> 838</fcn>
+            </item>
+
+            <item>
+                <mcc> 724</mcc>
+                <mnc> 5</mnc>
+                <rat>REDIRECT_GSM</rat>
+                <band> 0</band>
+                <fcn> 631</fcn>
+            </item>
+
+            <item>
+                <mcc> 724</mcc>
+                <mnc> 10</mnc>
+                <rat>REDIRECT_GSM</rat>
+                <band> 0</band>
+                <fcn> 623</fcn>
+            </item>
+
+            <item>
+                <mcc> 724</mcc>
+                <mnc> 31</mnc>
+                <rat>REDIRECT_GSM</rat>
+                <band> 0</band>
+                <fcn> 745</fcn>
+            </item>
+        </redirectItem>
+<!--fim estas linhas são referenciadas no gsm-->
+
+<!--Iguais para todos LTE-->
+    </cmmUeRedirectCfg>
+    <blkUeRedirectCfgActive>false </blkUeRedirectCfgActive>
+    <blkUeRedirectCfg>
+        <rejCause> 13</rejCause>
+        <redirectItem itemCnt = "1">
+            <item>
+                <mcc> 0</mcc>
+                <mnc> 0</mnc>
+                <rat>REDIRECT_LTE</rat>
+                <band> 39</band>
+                <fcn> 38400</fcn>
+            </item>
+        </redirectItem>
+    </blkUeRedirectCfg>
+    <whiteUeRedirectCfgActive>false </whiteUeRedirectCfgActive>
+    <whiteUeRedirectCfg>
+        <rejCause> 15</rejCause>
+        <redirectItem itemCnt = "1">
+            <item>
+                <mcc> 0</mcc>
+                <mnc> 0</mnc>
+                <rat>REDIRECT_NONE</rat>
+                <band> 1</band>
+                <fcn> 10713</fcn>
+            </item>
+        </redirectItem>
+    </whiteUeRedirectCfg>
+    <loopFcnCfgEn>true </loopFcnCfgEn>
+<!--Fim iguais para todos LTE-->
+
+<!--Redirecionado a frequencia do módulo LTE-->
+    <loopFcnCfg>
+        <loopPeriodSecCnt> 10</loopPeriodSecCnt>
+        <item itemCnt = "3">
+            <item>
+                <fcn> 1301</fcn>
+                <mcc> 724</mcc>
+                <mnc> 3</mnc>
+                <tac> 90</tac>
+                <nrFcn> 0</nrFcn>
+            </item>
+            <item>
+                <fcn> 1750</fcn>
+                <mcc> 724</mcc>
+                <mnc> 10</mnc>
+                <tac> 90</tac>
+                <nrFcn> 0</nrFcn>
+            </item>
+            <item>
+                <fcn> 1900</fcn>
+                <mcc> 724</mcc>
+                <mnc> 5</mnc>
+                <tac> 90</tac>
+                <nrFcn> 0</nrFcn>
+            </item>
+        </item>
+    </loopFcnCfg>
+
+<!--Fim redirecionado a frequencia do módulo LTE-->
+
+<!--Inicio da config condicional igual a todos -->
+    <extCfgEn>false </extCfgEn>
+    <ext>
+        <ftpEn>false </ftpEn>
+        <ftp>
+            <url></url>
+            <port> 0</port>
+            <usr></usr>
+            <pswd></pswd>
+        </ftp>
+        <bkFtpEn>false </bkFtpEn>
+        <bkFtp>
+            <url></url>
+            <port> 0</port>
+            <usr></usr>
+            <pswd></pswd>
+        </bkFtp>
+        <rptPeriodInSec> 0</rptPeriodInSec>
+        <hbSvrIp></hbSvrIp>
+        <bkHbSvrOn>false </bkHbSvrOn>
+        <bkHbSvrIp></bkHbSvrIp>
+        <swDlEn>false </swDlEn>
+        <swVer>
+            <url></url>
+            <port> 0</port>
+            <usr></usr>
+            <pswd></pswd>
+        </swVer>
+        <resetPeriodOn>false </resetPeriodOn>
+        <resetTime></resetTime>
+        <plmn></plmn>
+        <cityCode> 0</cityCode>
+        <rfPara>
+            <sib1InfoInc>false </sib1InfoInc>
+            <mcc> 0</mcc>
+            <mnc> 0</mnc>
+            <lacTac> 0</lacTac>
+            <cellId> 0</cellId>
+            <gsmIdx> 0</gsmIdx>
+            <fcn> 0</fcn>
+            <txPwr> 0</txPwr>
+            <rxGain> 0</rxGain>
+            <ratOption> 0</ratOption>
+            <phyCellCode> 0</phyCellCode>
+            <gsmFcn2> 0</gsmFcn2>
+            <nrFcn> 0</nrFcn>
+            <nrTac> 0</nrTac>
+        </rfPara>
+        <sync>
+            <mode> 0</mode>
+            <frmOfstInUs> 0</frmOfstInUs>
+        </sync>
+    </ext>
+</content>
+<!--Fim -->

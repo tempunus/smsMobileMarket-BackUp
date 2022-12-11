@@ -1,12 +1,15 @@
 {% extends 'base.html' %}
 {% block body %}
-
-        <div class="container">
-            <!-- <h1>Cadastro de Operadoras</h1> -->
-           <div class="row">
-                <div class="col col-6">
-                    <form method="POST" action="" class="border p-4 mt-2">
-                        {{ form_cadOperadoras.csrf_token }}
+<div class="container px-5 my-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card border-0 rounded-3 shadow-lg">
+          <div class="card-body p-4">
+            <div class="text-center">
+              <div class="h1 fw-light">Contact Form</div>
+              <p class="mb-4 text-muted">A functional, Bootstrap 5 contact form with validation built using SB Forms. Try it out!</p>
+            </div>
+            {{ form_cadOperadoras.csrf_token }}
                         <legend>
                             <!--
                             <img src="/static/icons_bootstrap/whatsapp.svg" width="35" height="35"  fill="currentColor" alt="Bootstrap">&nbsp;&nbsp;

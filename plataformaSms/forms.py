@@ -111,7 +111,7 @@ def buscar_lista_Operadoras():
     listaOperadorasDB = CadOperadoras.query.all()
     listaOperadoras = [('0', 'Escolha uma Operadora')]
     if listaOperadorasDB:
-        print(f"Registros Encontrados:")
+        # print(f"Registros Encontrados:")
         for item in listaOperadorasDB:
             # print(f"ID Operadora: {item.id}\nNome Operadora: {item.descrOperadora}")
             # print("-"*30)
@@ -124,18 +124,13 @@ def buscar_lista_Operadoras():
 
 class FormCadastroModulos(FlaskForm):
     OPERADORAS = buscar_lista_Operadoras()
-    OPERACAO = ('GSM','LTE')
-    ACTIVEMODULE = ('SIM','NÃO')
 
-    descrModule = StringField('Descrição do Módulo', validators=[DataRequired(), Length(3, 20)])
-    fixed_ip = StringField('IP do Módulo', validators=[DataRequired(), Length(7, 15)])
-    udp_Port = StringField('Porta UDP', validators=[DataRequired(), Length(2, 4)])
-    selectOperacao = SelectField(u'Operacao', choices=OPERACAO, validators=[DataRequired()])
-    selectActiveModule = SelectField(u'ActiveModule', choices=ACTIVEMODULE, validators=[DataRequired()])
-
-    # activeModule = BooleanField('Modulo Ativo ?')
-    
-    # selectOperadoras = SelectField(u'Operadora', choices=OPERADORAS, validators=[DataRequired()])
+    selectOperadoras = SelectField(u'Operadora', choices=OPERADORAS, validators=[DataRequired()])
+    descrModule = StringField('Informar a descrição do Módulo', validators=[DataRequired(), Length(3, 20)])
+    fixed_ip = StringField('Informar o IP do Módulo', validators=[DataRequired(), Length(7, 15)])
+    udp_Port = StringField('Informar a Porta UDP', validators=[DataRequired(), Length(2, 4)])
+    # udp_Port = IntegerField('Informar a Porta UDP', validators=[DataRequired(), Length(2, 4)])
+    activeModule = BooleanField('Modulo Ativo ?')
     # print(f"Operadora Selecionada: {selectOperadoras}")
     botao_submit_Salvar_CadModulos = SubmitField('Salvar')
 # ---------------------------------------
@@ -150,29 +145,35 @@ class FormCadastroModulos(FlaskForm):
 ----  MENSAGENS PARA OPERADORAS ----- 
 ---------------------------------------------
 """
-class FormMsgOperadora(FlaskForm):
+class FormCadastroMensagensMarketing(FlaskForm):
     # Configurar o envio de mensagem para o Equipamento
-    Date_Time = StringField('Data de Envio', validators=[DataRequired(), Length(3, 10)])
-    Desc_Text = IntegerField('Mensagem', validators=[DataRequired(), Length(1, 580)])
-    botao_Salvar = SubmitField('Salvar')
-# ---------------------------------------
-    def validate_cadconfxmls(self, Date_Time):
+    dataCadastro = StringField('Data de Cadastro', validators=[DataRequired(), Length(10, 10)])
+    mensagem = StringField('Mensagem', validators=[DataRequired(), Length(10, 580)])
+    ativa = BooleanField ('Ativa')
+    botao_submit_Salvar_CadMensagem = SubmitField('Salvar')
+    # ---------------------------------------
+    def validate_CadastroMensagensMarketing(self, dataCadastro):
+        # 1o Validate - DataCadastro
         pass
-        
+        '''
+        cadOperadorasDB = CadOperadoras.query.filter_by(descrOperadora=descrOperadora.data).first()
+        if cadOperadorasDB:
+            raise ValidationError(f'Esta Operadora: {descrOperadora.data} já esta cadastrada com esta descrição')
+        '''
+    # ---------------------------------------
+
 
 """
 ---------------------------------------------
 ----  CADASTRO DE CONFIGURAÇÕES DE XMLs ----- 
 ---------------------------------------------
 """
-class FormCadConfiguraGsm(FlaskForm):
-    # Configurar o Formato XMLS-GSM que vai mandar para o Equipamento
-    cboCidade = StringField('Cidade', validators=[DataRequired(), Length(3, 20)])
-    cboModulo = StringField('Módulo', validators=[DataRequired(), Length(1, 6)])
+class FormCadConfiguraXmls(FlaskForm):
+    # Configurar o Formato XMLS que vai mandar para o Equipamento
+    descrXML = StringField('Descrição do XML', validators=[DataRequired(), Length(3, 20)])
     rxGain = StringField('RX Gain', validators=[DataRequired(), Length(1, 6)])
     txPwr = StringField('TX PWR', validators=[DataRequired(), Length(1, 6)])
-    botao_Salvar = SubmitField('Salvar')
-    
+    cell = StringField('cell', validators=[DataRequired(), Length(1, 6)])
     arfcn = IntegerField('ARFCN', validators=[DataRequired(), Length(1, 6)])
     mcc = IntegerField('MCC', validators=[DataRequired(), Length(1, 6)])
     mnc = IntegerField('MNC', validators=[DataRequired(), Length(1, 6)])
@@ -183,44 +184,17 @@ class FormCadConfiguraGsm(FlaskForm):
     rxLevAccMin = IntegerField('RxLevAccMin', validators=[DataRequired(), Length(1, 6)])
     reselctHyst = IntegerField('ReselctHyst', validators=[DataRequired(), Length(1, 6)])
     nbFreq = IntegerField('nbFreq', validators=[DataRequired(), Length(1, 6)])
-    
     botao_Salvar = SubmitField('Salvar')
-    
-    botao_Editar = SubmitField('Editar')
 # ---------------------------------------
-    def validate_cadconfgsm(self, cboModulo):
+    def validate_cadconfxmls(self, rxGain):
         pass
         """"
         cadModule = CadModules.query.filter_by(descr_module=descr_module.data).first()
         if cadModule:
             raise ValidationError(f'Este módulo já esta cadastrado com esta descrição')
         """""
-# ---------------------------------------
 
-class FormCadConfiguraLte(FlaskForm):
-    # Configurar o Formato XMLS-LTE que vai mandar para o Equipamento
-    cboCidade = StringField('Cidade', validators=[DataRequired(), Length(3, 20)])
-    cboModulo = StringField('Módulo', validators=[DataRequired(), Length(1, 6)])
-    botao_Salvar = SubmitField('Salvar')
-    
-    cboOperadora = StringField('Operadora', validators=[DataRequired(), Length(1, 6)])
-    fcn = StringField('FCN', validators=[DataRequired(), Length(1, 6)])
-    mcc = IntegerField('MCC', validators=[DataRequired(), Length(1, 6)])
-    mnc = IntegerField('MNC', validators=[DataRequired(), Length(1, 6)])
-    tac = IntegerField('TAC', validators=[DataRequired(), Length(1, 6)])
-    nrfcn = IntegerField('NRFCN', validators=[DataRequired(), Length(1, 6)])
-    botao_Salvar = SubmitField('Salvar')
-    
-    botao_Editar = SubmitField('Editar')
 # ---------------------------------------
-    def validate_cadconflte(self, cboModulo):
-        pass
-        """"
-        cadModule = CadModules.query.filter_by(descr_module=descr_module.data).first()
-        if cadModule:
-            raise ValidationError(f'Este módulo já esta cadastrado com esta descrição')
-        """""
-# --------------------------------------------------------------------
 # A classe dos campos do Formulário de Login
 class FormConsultarDadosCentral(FlaskForm):
     #operadora           = StringField('Operadora', validators=[DataRequired()])
@@ -235,7 +209,7 @@ class FormConsultarDadosCentral(FlaskForm):
 class FormCadEstados(FlaskForm):
     nome           = StringField('Nome do Estado', validators=[DataRequired(), Length(3, 20)])
     sigla           = StringField('Sigla UF', validators=[DataRequired(), Length(2, 2)])
-    regiao          = StringField('Sigla UF', validators=[DataRequired(), Length(2, 15)])
+    regiao          = StringField('Região UF', validators=[DataRequired(), Length(2, 15)])
 
 # ---------------------------------------
 # A classe Cadastro de Cidades

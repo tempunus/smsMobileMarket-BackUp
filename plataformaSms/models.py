@@ -2,11 +2,6 @@ from plataformaSms import database, login_manager
 from datetime import datetime
 from flask_login import UserMixin
 
-# Como criar o Database na mao no Python Console.
-# Ver video abaixo:
-# https://hashtag.eadplataforma.com/lesson/detail/15/3294/
-# Entre Minuto 06:00 - 08:00
-
 @login_manager.user_loader
 def load_usuario(id_usuario):
     return Usuario.query.get(int(id_usuario))
@@ -104,3 +99,11 @@ class cadCidades(database.Model):
     id_Estado = database.Column(database.Integer, nullable=False)
     cd_mun_Ibge = database.Column(database.Integer, nullable=False)
 # ----------------------------------------------------------------
+
+# ----------------------------------------------------------------
+""" Cadastro de Mensagens de Marketing """
+class CadMensagem(database.Model):
+    id = database.Column(database.Integer, primary_key=True)
+    mensagem = database.Column(database.String,  nullable=False, default='Mensagem não Informada')
+    dataCadastro = database.Column(database.String, nullable=False)
+    ativa = database.Column(database.Boolean, nullable=False)
