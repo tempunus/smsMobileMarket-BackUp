@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <div class="container px-3 my-2">
+        <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card border-8 rounded-5 shadow-lg">
+            <div class="card-body p-2">
+                <div class="text-center">
+                    <div class="h1 fw-dark">Mensagens de Marketing</div>
+                    <p class="mb-4 text-muted light">Insira a baixo a mensagem para envio ao equipamento</p>
+                </div>
+                <!-- <form id="contactForm"  data-sb-form-api-token="API_TOKEN"> -->
+                <form method="POST" action="" role="form_CadMensMarketing" class="border p-4 mt-2">
+                    {{ form_CadMensMarketing.csrf_token }}
+                        <div class="form-group">
+                            <!-- campo Data -->
+                            <label for="dataCadastro">Data de Cadastro</label>
+                            <input class="form-control" id="dataCadastro"  name="dataCadastro" type="datetime-local" placeholder="date" data-sb-validations="required" />
+                            <br>
+                            <!-- Campo Mensagem de Marketing -->
+                            <div class="form-floating mb-2">
+                                <label for="mensagem">Mensagem de Marketing</label>
+                                <textarea name="mensagem" class="form-control" id="mensagem" type="text" placeholder="Message" style="height: 10rem;" data-sb-validations="required"></textarea>
+                                <div class="invalid-feedback" data-sb-feedback="message:required">A mensagem é obrigatória.</div>
+                            </div>
+                        </div>
+                        <div class="checckbox">
+                            <label>
+                                {{form_CadMensMarketing.ativa}} Ativa?
+                            </label>
+                        </div>
+                        <center>
+                            {{ form_CadMensMarketing.botao_submit_Salvar_CadMensagem(class="btn btn-success mt-2")  }}
+                        <!-- <button type="submit" class="btn btn-success">Salvar Mensagem </button> -->
+                        </center>
+                </form>
+            </div>
+            </div>
+        </div>
+        </div>
+        <br>
+        <br>        
+        <!-- End of contact form -->
+        <!-- DataTales Example -->
+        <div class="table">
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Data</th>
+                    <th scope="col">Mensagem</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>16/10/2022</td>
+                    <td>Teste 01</td>
+                </tr>
+                <tr>
+                    <td>22/11/2022</td>
+                    <td>Teste 02</td>
+                </tr>
+            </table>
+        </div>
+    </div> 
+    <!-- CDN Link to SB Forms Scripts -->
+    <script src="./static/js/sb-forms-0.4.1.js"></script>  
+    <script src="./static/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="./static/js/scripts.js"></script>
+    <script src="./static/js/simple-datatables@latest.js" crossorigin="anonymous"></script>
+    <script src="./static/js/datatables-simple-demo.js"></script>
+{% endblock %}

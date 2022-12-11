@@ -1,15 +1,14 @@
 import flask_bcrypt
 from flask import render_template, redirect, url_for, flash, request, abort
 from plataformaSms import app, database, bcrypt
-from plataformaSms.forms import FormCadConfiguraGsm, FormCadConfiguraLte, FormLogin, FormCriarConta, FormEditarPerfil, FormCadastroModulos,\
-     FormCadastroServers, FormCadastroOperadoras, \
-    FormConsultarDadosCentral, FormCriarPost
+from plataformaSms.forms import FormLogin, FormCriarConta, FormEditarPerfil, FormCadastroModulos,\
+     FormCadastroServers, FormCadastroOperadoras, FormCadConfiguraXmls,\
+    FormConsultarDadosCentral, FormCadastroMensagensMarketing
 from plataformaSms.models import Usuario, Post, CadServers, CadModules, CadOperadoras, phone_data
 from flask_login import login_user, logout_user, current_user, login_required
 import secrets
 import os
 from PIL import Image  # Biblioteca para compactar Imagem
-
 
 # Configuração Inicial
 @app.route('/')
@@ -161,44 +160,6 @@ def editar_perfil():
     return render_template('editarperfil.html', foto_perfil=foto_perfil, form=form)
 
 
-@app.route('/post/criar', methods=['GET', 'POST'])
-@login_required
-def criar_post():
-    form = FormCriarPost()
-    if form.validate_on_submit():
-        post  = Post(titulo=form.titulo.data, corpo=form.corpo.data, autor=current_user)
-
-        # Adicionar a Sessão e commitar o Registro
-        database.session.add(post)
-        database.session.commit()
-
-        print(f"Criado o Post com o título: {form.titulo.data} com sucesso")
-        flash(f"Criado o Post com o título: {form.corpo.data}", "alert-success")
-        return redirect(url_for('home'))
-    return render_template('criarpost.html', form=form)
-
-@app.route('/post/<post_id>', methods=['GET', 'POST'])
-@login_required
-def exibir_post(post_id):
-    post = Post.query.get(post_id)
-    # Verificar se o Usuário que esta chamando se ele é o dono do Post
-    if current_user == post.autor:
-        form = FormCriarPost()
-        if request.method == 'GET':
-            form.titulo.data = post.titulo
-            form.corpo.data = post.corpo
-        elif form.validate_on_submit():
-            # Atualizar os dados do Post do dono do Post
-            post.titulo = form.titulo.data
-            post.corpo = form.corpo.data
-            database.session.commit()
-            flash('Post atualizado com Sucesso', 'alert-success')
-            return redirect(url_for('home'))
-    else:
-        form = None
-    return render_template('post.html', post=post, form=form)
-
-
 @app.route('/post/<post_id>/excluir', methods=['GET', 'POST'])
 @login_required
 def excluir_post(post_id):
@@ -211,9 +172,9 @@ def excluir_post(post_id):
     else:
         abort(403)
 
-"""
-Páginas referentes o Sistema de Envio de Mensagens
-"""
+'''
+******  Rota referentes ao Cadastro de Módulos   ****** 
+'''
 @app.route('/Modules', methods=['GET', 'POST'])
 @login_required
 def cad_Modules():
@@ -241,24 +202,14 @@ def cad_Modules():
 
         else:
             # Salvar os dados do Cadastro de módulo
-            #cadmodulesDB = CadModules(descrModule=form_cadastroModulos.descrModule.data,
-                                      #fixed_ip=form_cadastroModulos.fixed_ip.data,
-                                      #udpPort=int(form_cadastroModulos.udp_Port.data),
-                                      #ativo=form_cadastroModulos.activeModule.data,
-                                      #id_Operadora=int(form_cadastroModulos.selectOperadoras.data)
-                                      #)
-            #-------------------------------------------------------------------------------------------     
-            
             cadmodulesDB = CadModules(descrModule=form_cadastroModulos.descrModule.data,
-                                      modoDeOperacao=form_cadastroModulos.selectOperacao.data,
                                       fixed_ip=form_cadastroModulos.fixed_ip.data,
                                       udpPort=int(form_cadastroModulos.udp_Port.data),
                                       ativo=form_cadastroModulos.activeModule.data,
-                                      connected=0
-                                      )     
+                                      id_Operadora=int(form_cadastroModulos.selectOperadoras.data)
+                                      )
             database.session.add(cadmodulesDB)
             database.session.commit()
-            
             print(f"Atenção o módulo {form_cadastroModulos.descrModule.data} foi cadastrado com sucesso.")
             flash(f"Atenção o módulo {form_cadastroModulos.descrModule.data} foi cadastrado com sucesso.", "alert-success")
             # Depois que cadastrar o novo Registro, listar na tabela abaixo do cadastro
@@ -328,50 +279,61 @@ def consultarDados():
 #**********************************************************************************
 
 """
+Páginas referentes a Configuração de XMLS
+"""
+@app.route('/cadconfigxml', methods=['GET', 'POST'])
+@login_required
+def cad_conf_xmls():
+    form_cad_conf_xmls = FormCadConfiguraXmls()
+    return render_template('configXML.html', form_cad_conf_xmls=form_cad_conf_xmls)
+
+#********************************************************************************#
+
+
+# **********************************************************************************
+"""
 Páginas referentes o Sistema de Envio de Mensagens
 """
-@app.route('/configGsm', methods=['GET', 'POST'])
+# ------------------------------------------------------------------
+@app.route('/cadmensagensmarketing', methods=['GET', 'POST'])
 @login_required
-def cad_conf_gsm():
-    form_cad_conf_gsm = FormCadConfiguraGsm()
-    return render_template('configGsm.html', form_cad_conf_gsm=form_cad_conf_gsm)
+def cad_Mensagens_Marketing():
+    form_CadMensMarketing = FormCadastroMensagensMarketing()
+    # *** Validação dos dados ***
+    if (form_CadMensMarketing.validate_on_submit() and 'botao_submit_Salvar_CadMensagem' in request.form):
+        # 1a Validador - Mensagem de Marketing
+        cadMensMarketingDB = CadOperadoras.query.filter_by(mensagem=form_CadMensMarketing.mensagem.data).first()
+
+        if cadMensMarketingDB and cadMensMarketingDB.mensagem == form_CadMensMarketing.mensagem.data:
+            print(f"Atenção esta Mensagem: {form_CadMensMarketing.mensagem.data} já esta cadastrada !!! Favor informar outra.")
+            flash(f"Atenção esta de decrição: {form_CadMensMarketing.mensagem.data} já esta cadastrada !!", 'alert-info')
+            # Se ja existe a mesma descrição de Operadora, volta para a página
+            return redirect( url_for('cad_Mensagens_Marketing')) # Ficar na página Atual
+        else:
+            # Salvar os dados do Cadastro de Operadoras de Telefonia
+            cadMensMarketingDB = cadMensMarketingDB(mensagem=form_CadMensMarketing.mensagem.data,
+                                                    dataCadastro=form_CadMensMarketing.dataCadastro.data,
+                                                    ativa=form_CadMensMarketing.ativa.data)
+            database.session.add(cadMensMarketingDB)
+            database.session.commit()
+            print(f"Atenção a operadora {form_CadMensMarketing.mensagem.data} foi cadastrada com sucesso.")
+            flash(f"Atenção a operadora {form_CadMensMarketing.mensagem.data} foi cadastrada com sucesso.", "alert-success")
+            # Depois que cadastrar o novo Registro, listar na tabela abaixo do cadastro
+            return redirect( url_for('cad_Mensagens_Marketing')) # Ficar na página Atual
+
+    return render_template('cadMensagensMarketing.html', form_CadMensMarketing=form_CadMensMarketing)
 
 
-print(f'API_KEY do Google: {app.config["GOOGLE_API_KEY"]}')
-
-#********************************************************************************#
-
-@app.route('/configLte', methods=['GET', 'POST'])
-@login_required
-def cad_conf_lte():
-    form_cad_conf_lte = FormCadConfiguraLte()
-    return render_template('configLte.html', form_cad_conf_lte=form_cad_conf_lte)
 
 
-print(f'API_KEY do Google: {app.config["GOOGLE_API_KEY"]}')
-
-#********************************************************************************#
-
-@app.route('/msgOperadora', methods=['GET', 'POST'])
-@login_required
-def msgOperadora():
-    if request.method== 'POST':
-        mensagem = request.form.get("mensagem")
-        dataCadastro = request.form.get("dataCadastro")
-    return render_template('msgOperadora.html')
-
-
-print(f'API_KEY do Google: {app.config["GOOGLE_API_KEY"]}')
-
-#********************************************************************************#
+# ********************************************************************************#
 
 @app.route('/consulta', methods=['GET', 'POST'])
 @login_required
 def consulta():
     return render_template('consulta.html')
 
-
-print(f'API_KEY do Google: {app.config["GOOGLE_API_KEY"]}')
+print(f'routes.py - API_KEY do Google: {app.config["GOOGLE_API_KEY"]}')
 
 #**********************************************************************************#
 
